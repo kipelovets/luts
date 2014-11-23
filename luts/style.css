@@ -1,0 +1,47 @@
+.center {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  margin-top: -220px;
+  margin-left: -400px;
+  position: absolute;
+  width: 800px;
+}
+
+.col-md-2, .col-md-10 {
+    padding-right: 0px; 
+    padding-left: 2px; 
+}
+
+.col-md-2 {
+    text-align: left;
+}
+
+.btn-luts, .btn-luts:hover {
+    background-color: #FFDB4A;
+    background-image: none;
+    border-color: #FFDB4A;
+    color: #000;
+}
+
+.btn-luts:hover {
+    text-decoration: underline;
+}
+
+form {
+    padding-top: 20px;
+}
+
+.channel-container {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -280px;
+}
+
+.bottom {
+    margin-top: 160px;
+    color: lightgray;
+    text-align: center;
+}

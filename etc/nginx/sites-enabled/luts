@@ -1,0 +1,27 @@
+server {
+	listen 80;
+    server_name xn--k1awx.xn--p1ai;
+    access_log /var/log/nginx/luts.acc;
+
+    client_max_body_size 51m;
+
+	root /var/www/luts;
+	index index.html;
+
+	location / {
+        try_files $uri $uri/ @rewriteapp;
+	}
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /app.php/$1 last;
+    }
+
+    location ~ \.php {
+        set $php_root $document_root;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+		include fastcgi_params;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index   app.php;
+    }
+}

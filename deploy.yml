@@ -1,0 +1,20 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+    - name: upload all
+      synchronize: src=luts dest=/var/www/
+    - name: chmod
+      file: path=/var/www/luts owner=www-data group=www-data recurse=yes
+
+    - name: nginx config
+      copy: src=etc/nginx/{{ item }} dest=/etc/nginx/{{ item }}
+      with_items:
+          - sites-enabled/luts
+          - nginx.conf
+      notify: 
+        - reload nginx
+
+  handlers:
+    - name: reload nginx
+      service: name=nginx state=reloaded
